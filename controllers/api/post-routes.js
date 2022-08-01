@@ -32,7 +32,7 @@ router.get("/", (req, res) => {
 
 router.get("/:id", async (req, res) => {
   try {
-    const dbPostData = Post.findOne({
+    const dbPostData = await Post.findOne({
       where: {
         id: req.params.id,
       },
