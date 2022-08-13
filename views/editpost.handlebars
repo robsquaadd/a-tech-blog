@@ -1,0 +1,33 @@
+<div class="container row">
+  <form
+    id="edit-post-form"
+    class="form border border-dark col-12 col-md-8 offset-md-2 mt-5"
+  >
+    <h2>Edit Your Post: </h2>
+    <label for="post-title" class="my-1">Title: </label>
+    <input
+      type="text"
+      id="edit-post-title"
+      class="col-12 my-2"
+      value="{{post.title}}"
+    />
+    <label for="post-content" class="my-1">Content: </label>
+    <textarea
+      id="edit-post-content"
+      class="col-12 my-2"
+      rows="8"
+    >{{post.post_content}}
+    </textarea>
+    <button
+      type="submit"
+      id="save-post-button"
+      class="btn btn-dark text-light col-12 col-md-4 offset-md-1 mt-1 mb-3"
+    >Save Post</button>
+    <button
+      type="button"
+      id="delete-post-button"
+      class="btn btn-danger text-light col-12 col-md-4 offset-md-1 mt-1 mb-3"
+    >Delete Post</button>
+  </form>
+</div>
+<script src="/javascript/edit-post.js"></script>

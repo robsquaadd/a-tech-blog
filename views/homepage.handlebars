@@ -1,16 +1,4 @@
-{{#each posts as |post|}}
-  <h2 class="my-4">Current Posts: </h2>
-  <div class="m-auto container-fluid justify-content-center row my-2">
-    <a
-      href="/post/{{post.id}}"
-      class="text-decoration-none text-dark col-10 text-center"
-    ><h3>{{post.title}}</h3>
-      -- Posted By:
-      {{post.user.username}}
-      -- Post Created on:
-      {{post.created_at}}
-      --
-      {{post.comments.length}}
-      Comments</a>
-  </div>
-{{/each}}
+<div class="container">
+  <h2 class="mt-5 mb-3">Current Posts: </h2>
+  {{>post-info posts}}
+</div>

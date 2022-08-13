@@ -1,1 +1,24 @@
-<p>Page Loaded Successfully</p>
+<div class="mt-5 container-fluid row justify-content-center">
+  <a href="/dashboard/newpost"><button
+      class="btn btn-dark text-light col-6 offset-3"
+      id="create-post-button"
+    >Create a New Post</button></a>
+  <div class="col-12 col-md-8 my-4">
+    <h2>Your Posts: </h2>
+    {{#each posts as |post|}}
+      <div class="m-auto container-fluid justify-content-center row my-2">
+        <a
+          href="/dashboard/edit/{{id}}"
+          class="text-decoration-none text-dark col-10 text-center"
+        ><h3>{{post.title}}</h3>
+          -- Posted By:
+          {{post.user.username}}
+          -- Post Created on:
+          {{post.created_at}}
+          --
+          {{post.comments.length}}
+          Comments</a>
+      </div>
+    {{/each}}
+  </div>
+</div>

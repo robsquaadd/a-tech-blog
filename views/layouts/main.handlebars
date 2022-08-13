@@ -10,15 +10,18 @@
       integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
       crossorigin="anonymous"
     />
+    <link href="/css/styles.css" rel="stylesheet" />
   </head>
   <body>
-    <div class="w-100 row d-flex flex-column min-vh-100 m-auto">
-      <header class="bg-danger row col-12 justify-content-between">
+    <div class="row d-flex flex-column min-vh-100 m-auto">
+      <header
+        class="bg-danger row justify-content-around align-items-end mx-auto"
+      >
         <a href="/" class="col-3 m-1 text-decoration-none text-light"><h1>A Tech
             Blog</h1></a>
-        <nav class="col col-md-5 row">
+        <nav class="col col-md-7 row mr-5 pr-5">
           <ul
-            class="list-unstyled row justify-content-between align-items-end text-center text-md-right"
+            class="list-unstyled row justify-content-around align-items-end text-center"
           >
             <li class="col col-md-2"><a
                 href="/"
@@ -29,15 +32,19 @@
                 class="text-decoration-none text-dark font-weight-bold"
               >Dashboard</a></li>
             {{#if loggedIn}}
-              <li class="col col-md-2"><a
-                  href="/logout"
-                  class="text-decoration-none text-dark font-weight-bold"
-                >Logout</a></li>
+              <li class="col col-md-2"><button
+                  type="button"
+                  class="btn btn-dark text-light"
+                  id="logout-button"
+                >Logout</button></li>
             {{else}}
               <li class="col col-md-2"><a
-                  href="/login"
-                  class="text-decoration-none text-dark font-weight-bold"
-                >Login</a></li>
+                  href="/signup"
+                  class="text-decoration-none text-light font-weight-bold"
+                ><button
+                    class="btn btn-dark"
+                    type="button"
+                  >Login/Signup</button></a></li>
             {{/if}}
           </ul>
         </nav>
@@ -47,5 +54,8 @@
       </section>
       <footer class="bg-danger mt-auto">Thank you for visiting</footer>
     </div>
+    {{#if loggedIn}}
+      <script src="/javascript/logout.js"></script>
+    {{/if}}
   </body>
 </html>

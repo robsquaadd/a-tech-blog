@@ -7,7 +7,9 @@ const exphbs = require("express-handlebars");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const sess = {
   secret: "So, So Secret",
-  cookie: {},
+  cookie: {
+    expires: 1800000,
+  },
   resave: false,
   saveUninitialized: true,
   store: new SequelizeStore({ db: sequelize }),

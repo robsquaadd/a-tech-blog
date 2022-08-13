@@ -44,4 +44,39 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/edit/:id", async (req, res) => {
+  try {
+    if (req.session.loggedIn) {
+      const dbPostData = await Post.findOne({
+        where: {
+          id: req.params.id,
+        },
+        attributes: ["id", "title", "post_content", "user_id", "created_at"],
+        include: {
+          model: User,
+          attributes: ["username"],
+        },
+      });
+      if (!dbPostData) {
+        res.status(404).json({ message: "No post with that ID was found." });
+      }
+      const post = dbPostData.get({ plain: true });
+      res.render("editpost", { post, loggedIn: req.session.loggedIn });
+    } else {
+      res.redirect("/signup");
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+router.get("/newpost", (req, res) => {
+  if (req.session.loggedIn) {
+    res.render("newpost", { loggedIn: req.session.loggedIn });
+    return;
+  }
+  res.redirect("/signup");
+});
+
 module.exports = router;

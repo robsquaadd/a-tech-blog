@@ -1,0 +1,15 @@
+{{#each this}}
+  <div class="m-auto container-fluid justify-content-center row my-2">
+    <a
+      href="/post/{{id}}"
+      class="text-decoration-none text-dark col-10 text-center"
+    ><h3>{{title}}</h3>
+      -- Posted By:
+      {{user.username}}
+      -- Post Created on:
+      {{created_at}}
+      --
+      {{comments.length}}
+      Comments</a>
+  </div>
+{{/each}}

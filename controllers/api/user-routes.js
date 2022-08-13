@@ -87,13 +87,13 @@ router.post("/login", async (req, res) => {
 
 router.post("/logout", (req, res) => {
   if (req.session.loggedIn) {
+    console.log("Session is Live");
     req.session.destroy(() => {
       res.status(204).end();
-      return;
     });
-  } else {
-    res.status(404).end();
+    return;
   }
+  res.status(404).end();
 });
 
 module.exports = router;

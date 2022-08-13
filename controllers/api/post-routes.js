@@ -7,16 +7,16 @@ router.get("/", (req, res) => {
     attributes: ["id", "title", "post_content", "created_at"],
     include: [
       {
-        model: User,
-        attributes: ["username"],
-      },
-      {
         model: Comment,
-        attributes: ["id", "comment_text", "user_id", "created_at"],
+        attributes: ["id", "comment_text", "user_id", "post_id", "created_at"],
         include: {
           model: User,
           attributes: ["username"],
         },
+      },
+      {
+        model: User,
+        attributes: ["username"],
       },
     ],
     order: [["created_at", "DESC"]],
@@ -44,7 +44,13 @@ router.get("/:id", async (req, res) => {
         },
         {
           model: Comment,
-          attributes: ["id", "comment_text", "user_id", "created_at"],
+          attributes: [
+            "id",
+            "comment_text",
+            "user_id",
+            "post_id",
+            "created_at",
+          ],
           include: {
             model: User,
             attributes: ["username"],
@@ -68,12 +74,36 @@ router.post("/", async (req, res) => {
     const dbPostData = await Post.create({
       title: req.body.title,
       post_content: req.body.post_content,
-      user_id: req.body.user_id,
+      user_id: req.session.user_id,
     });
     res.json(dbPostData);
   } catch (err) {
     console.log(err);
     res.status(500).json(err);
+  }
+});
+
+router.put("/:id", async (req, res) => {
+  try {
+    const dbPostData = await Post.update(
+      {
+        title: req.body.title,
+        post_content: req.body.post_content,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
+    if (!dbPostData) {
+      res.status(404).json({ message: "No post found with this id." });
+      return;
+    }
+    res.json(dbPostData);
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
   }
 });
 

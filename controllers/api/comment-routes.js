@@ -32,10 +32,10 @@ router.get("/:id", async (req, res) => {
 
 router.post("/", async (req, res) => {
   try {
-    if (req.session) {
+    if (req.session.loggedIn) {
       const dbCommentData = await Comment.create({
         comment_text: req.body.comment_text,
-        user_id: req.body.user_id,
+        user_id: req.session.user_id,
         post_id: req.body.post_id,
       });
       res.json(dbCommentData);
