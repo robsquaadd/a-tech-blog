@@ -1,0 +1,17 @@
+<div class="container justify-content-center row m-auto">
+  <h2 class="text-center mt-5 mb-4">{{post.title}} -- {{post.created_at}}</h2>
+  <p class="text-center mb-3">Posted: By: {{post.user.username}}</p>
+  <p
+    class="border-top border-bottom m-auto text-center my-1"
+  >{{post.post_content}}</p>
+  <textarea class="col-10 my-5" placeholder="Add a Comment"></textarea>
+  <button type="submit" class="btn btn-danger col-10 col-md-3">Comment</button>
+  <section class="my-5 border-top">
+    {{#each post.comments as |comment|}}
+      <div class="comment border-bottom">
+        <p>{{comment.comment_text}}</p>
+        <p>{{comment.user.username}} -- {{comment.created_at}}</p>
+      </div>
+    {{/each}}
+  </section>
+</div>
