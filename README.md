@@ -28,4 +28,4 @@ Users can edit or delete posts from their dashboard if they click on one of thei
 # links
 
 Repo: https://github.com/robsquaadd/a-tech-blog
-Link: 
+Link: https://a-tech-blog-collier.herokuapp.com/
