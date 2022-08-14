@@ -20,6 +20,7 @@ router.get("/", async (req, res) => {
           },
         },
       ],
+      order: [["created_at", "DESC"]],
     });
     const posts = dbPostData.map((post) => {
       return post.get({ plain: true });
@@ -84,7 +85,5 @@ router.get("/signup", (req, res) => {
   }
   res.render("signup");
 });
-
-
 
 module.exports = router;
